@@ -8,12 +8,12 @@
   <style>
     :root {
       --bg: #050505;
-      --bg-soft: #0d0d0d;
+      --bg-card: #0f0f0f;
       --text-main: #ffffff;
-      --text-muted: #8b8b8b;
+      --text-muted: #8c8c8c;
       --accent: #d6c9a5;
-      --border: rgba(255, 255, 255, 0.08);
-      --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      --border: rgba(255,255,255,0.08);
+      --transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
     }
 
     * {
@@ -31,15 +31,14 @@
     }
 
     .container {
-      max-width: 820px;
+      max-width: 860px;
       margin: 0 auto;
       padding: 120px 32px 64px;
     }
 
-    /* BRAND SIGNATURE */
+    /* HEADER */
     .signature {
-      font-size: 16px;
-      font-weight: 500;
+      font-size: 14px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--accent);
@@ -47,7 +46,7 @@
     }
 
     h1 {
-      font-size: clamp(36px, 7vw, 60px);
+      font-size: clamp(38px, 7vw, 62px);
       font-weight: 500;
       letter-spacing: -0.04em;
       line-height: 1.08;
@@ -63,29 +62,48 @@
     }
 
     section {
-      margin-bottom: 88px;
+      margin-bottom: 96px;
     }
 
     .label {
       display: block;
-      font-size: 10px;
-      letter-spacing: 0.28em;
+      font-size: 11px;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 40px;
+      margin-bottom: 36px;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
     }
 
-    .statement {
-      font-size: 21px;
-      color: #cfcfcf;
-      max-width: 680px;
+    /* CARDS */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
     }
 
-    .statement strong {
-      color: var(--text-main);
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 32px;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .card h3 {
+      font-size: 18px;
       font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: var(--text-muted);
     }
 
     /* LINKS */
@@ -156,19 +174,44 @@
     </h1>
 
     <p class="tagline">
-      I work with code, but I’m more interested in systems, discipline,
-      and how decisions compound over time.
+      Code is my medium. Systems, discipline, and long-term thinking are the craft.
     </p>
 
+    <!-- PHILOSOPHY -->
     <section>
       <span class="label">Philosophy</span>
-      <p class="statement">
-        I’m focused on <strong>clarity over noise</strong>, fundamentals over trends,
-        and becoming competent in ways that last. Technology is a tool —
-        thinking is the craft.
-      </p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Systems over shortcuts</h3>
+          <p>I value architectures and habits that compound over time.</p>
+        </div>
+        <div class="card">
+          <h3>Clarity beats noise</h3>
+          <p>Fewer tools, fewer words — better decisions.</p>
+        </div>
+        <div class="card">
+          <h3>Long-term competence</h3>
+          <p>Skill is built quietly through consistency and fundamentals.</p>
+        </div>
+      </div>
     </section>
 
+    <!-- WORK -->
+    <section>
+      <span class="label">Work & Writing</span>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Software Systems</h3>
+          <p>Backend, Android, and data-driven thinking with clean code.</p>
+        </div>
+        <div class="card">
+          <h3>Writing</h3>
+          <p>Essays on technology, thinking, and modern discipline.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS -->
     <section>
       <span class="label">Elsewhere</span>
       <div class="links">

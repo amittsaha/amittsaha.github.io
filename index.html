@@ -10,56 +10,201 @@
 
   <style>
     :root {
-      --bg: #0a0a0a;
-      --text: #e5e5e5;
-      --text-dim: #737373;
-      --accent: #a3a3a3;
-      --border: rgba(255, 255, 255, 0.05);
-      --transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+      --bg: #050505;
+      --text: #ffffff;
+      --text-dim: #666666;
+      --accent: #d4d4d8;
+      --border: rgba(255, 255, 255, 0.08);
+      --transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: 'Inter', -apple-system, sans-serif;
-      line-height: 1.5;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    /* Subtle Grain Overlay for Aesthetic Texture */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      opacity: 0.02;
-      pointer-events: none;
-      background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/76/Noise_generated_with_GIMP.png");
-      z-index: 9999;
-    }
-
     .container {
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
-      padding: 140px 40px 80px;
+      padding: 120px 32px 60px;
     }
 
-    /* HEADER / LOGO */
+    /* TOP NAVIGATION */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 40px;
+      position: absolute;
+      top: 0; left: 0; width: 100%;
+      padding: 48px;
       display: flex;
       justify-content: space-between;
-      z-index: 100;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    /* HERO SECTION */
+    header { margin-bottom: 100px; }
+    
+    .name-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: block;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: clamp(36px, 8vw, 64px);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 32px;
+    }
+
+    .hero-description {
+      font-size: 20px;
+      color: var(--text-dim);
+      font-weight: 300;
+      max-width: 600px;
+    }
+
+    /* SECTION STYLING */
+    section { margin-bottom: 80px; }
+
+    .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+      display: block;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    /* TECH STACK LIST */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+    }
+
+    .stack-item {
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 400;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* LINKS */
+    .link-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      text-decoration: none;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .link-row:hover {
+      color: var(--accent);
+      padding-left: 12px;
+      border-bottom-color: var(--text);
+    }
+
+    .link-meta {
+      font-size: 12px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 100px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 32px 24px; }
+      .container { padding: 140px 24px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span>Portfolio / 2026</span>
+    <span>Kolkata, IN</span>
+  </nav>
+
+  <main class="container">
+    
+    <header>
+      <span class="name-title">AMIT SAHA</span>
+      <h1>Architecting Digital<br/>Infrastructure.</h1>
+      <p class="hero-description">Software Engineer focused on the intersection of scalable systems and aesthetic precision.</p>
+    </header>
+
+    <section>
+      <span class="label">Expertise</span>
+      <div class="stack-grid">
+        <div class="stack-item">Java</div>
+        <div class="stack-item">Kotlin</div>
+        <div class="stack-item">Spring Boot</div>
+        <div class="stack-item">SQL</div>
+        <div class="stack-item">Android</div>
+        <div class="stack-item">Data Analysis</div>
+      </div>
+    </section>
+
+    <section>
+      <span class="label">Network</span>
+      <div class="links-grid">
+        <a href="https://linkedin.com/in/amittsaha" class="link-row">
+          <span>LinkedIn</span>
+          <span class="link-meta">Professional</span>
+        </a>
+        <a href="https://substack.com/@amittsaha" class="link-row">
+          <span>Substack</span>
+          <span class="link-meta">Writing</span>
+        </a>
+        <a href="https://medium.com/@amittsaha" class="link-row">
+          <span>Medium</span>
+          <span class="link-meta">Articles</span>
+        </a>
+        <a href="https://instagram.com/theamitsahaa" class="link-row">
+          <span>Instagram</span>
+          <span class="link-meta">Social</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>Amit Saha © 2026</span>
+      <span>Built with Intent</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>
       mix-blend-mode: difference;
     }
 

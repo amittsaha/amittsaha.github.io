@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Amitt Saha</title>
+  <title>Amit Saha | Software Engineer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #050505;
-      --bg-card: #0f0f0f;
-      --text-main: #ffffff;
-      --text-muted: #8c8c8c;
-      --accent: #d6c9a5;
-      --border: rgba(255,255,255,0.08);
-      --transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+      --bg: #0a0a0a;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --text-main: #f5f5f5;
+      --text-muted: #a1a1a1;
+      --accent: #d4af37; /* Metallic Gold */
+      --accent-soft: rgba(212, 175, 55, 0.15);
+      --border: rgba(255, 255, 255, 0.06);
+      --transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     * {
@@ -25,85 +27,109 @@
     body {
       background: var(--bg);
       color: var(--text-main);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Subtle Grain Overlay for a "Print" texture */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 10;
     }
 
     .container {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 120px 32px 64px;
+      padding: 160px 40px 80px;
     }
 
     /* HEADER */
     .signature {
-      font-size: 14px;
-      letter-spacing: 0.22em;
+      font-size: 12px;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 48px;
+      margin-bottom: 60px;
+      font-weight: 500;
+      opacity: 0.8;
     }
 
     h1 {
-      font-size: clamp(38px, 7vw, 62px);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 8vw, 72px);
       font-weight: 500;
-      letter-spacing: -0.04em;
-      line-height: 1.08;
-      margin-bottom: 28px;
+      font-style: italic;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 40px;
     }
 
     .tagline {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 300;
       color: var(--text-muted);
-      max-width: 620px;
-      margin-bottom: 96px;
+      max-width: 580px;
+      margin-bottom: 120px;
+      border-left: 1px solid var(--accent);
+      padding-left: 30px;
     }
 
     section {
-      margin-bottom: 96px;
+      margin-bottom: 140px;
     }
 
     .label {
       display: block;
-      font-size: 11px;
-      letter-spacing: 0.26em;
+      font-size: 10px;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 36px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+      margin-bottom: 48px;
+      opacity: 0.6;
     }
 
     /* CARDS */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
     }
 
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      padding: 32px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
       transition: var(--transition);
+      position: relative;
+      overflow: hidden;
     }
 
     .card:hover {
       border-color: var(--accent);
-      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-8px);
     }
 
     .card h3 {
-      font-size: 18px;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
       font-weight: 500;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      color: var(--text-main);
     }
 
     .card p {
       font-size: 15px;
       color: var(--text-muted);
+      font-weight: 300;
     }
 
     /* LINKS */
@@ -116,7 +142,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 22px 0;
+      padding: 28px 0;
       border-bottom: 1px solid var(--border);
       text-decoration: none;
       color: var(--text-main);
@@ -125,40 +151,35 @@
 
     .link-row:hover {
       color: var(--accent);
-      padding-left: 12px;
-      border-bottom-color: var(--accent);
+      padding-left: 20px;
+      background: linear-gradient(90deg, var(--accent-soft) 0%, transparent 100%);
     }
 
     .link-meta {
-      font-size: 11px;
-      letter-spacing: 0.12em;
+      font-size: 10px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
     footer {
-      margin-top: 120px;
-      padding-top: 40px;
+      margin-top: 100px;
+      padding: 60px 0;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
-      font-size: 11px;
-      letter-spacing: 0.12em;
+      font-size: 10px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #555;
+      color: #444;
     }
 
     @media (max-width: 600px) {
       .container {
-        padding: 96px 24px 56px;
+        padding: 100px 24px 60px;
       }
-      .tagline {
-        font-size: 18px;
-      }
-      footer {
-        flex-direction: column;
-        gap: 12px;
-      }
+      h1 { font-size: 48px; }
+      .tagline { font-size: 18px; padding-left: 20px; }
     }
   </style>
 </head>
@@ -166,7 +187,7 @@
 <body>
   <main class="container">
 
-    <div class="signature">Amitt Saha</div>
+    <div class="signature">Amit Saha</div>
 
     <h1>
       Building quietly.<br />
@@ -174,46 +195,43 @@
     </h1>
 
     <p class="tagline">
-      Code is my medium. Systems, discipline, and long-term thinking are the craft.
+      Software Engineer focusing on architectural integrity, <br>refined systems, and clean code.
     </p>
 
-    <!-- PHILOSOPHY -->
     <section>
       <span class="label">Philosophy</span>
       <div class="card-grid">
         <div class="card">
           <h3>Systems over shortcuts</h3>
-          <p>I value architectures and habits that compound over time.</p>
+          <p>Prioritizing architectures that compound and scale through discipline.</p>
         </div>
         <div class="card">
           <h3>Clarity beats noise</h3>
-          <p>Fewer tools, fewer words — better decisions.</p>
+          <p>Minimalism in tooling and maximum precision in execution.</p>
         </div>
         <div class="card">
-          <h3>Long-term competence</h3>
-          <p>Skill is built quietly through consistency and fundamentals.</p>
+          <h3>Quiet Competence</h3>
+          <p>Skill is forged through consistent fundamentals and deep focus.</p>
         </div>
       </div>
     </section>
 
-    <!-- WORK -->
     <section>
-      <span class="label">Work & Writing</span>
+      <span class="label">Work & Perspective</span>
       <div class="card-grid">
         <div class="card">
-          <h3>Software Systems</h3>
-          <p>Backend, Android, and data-driven thinking with clean code.</p>
+          <h3>Engineering</h3>
+          <p>Specializing in Java, Kotlin, and Spring Boot for robust backend systems.</p>
         </div>
         <div class="card">
-          <h3>Writing</h3>
-          <p>Essays on technology, thinking, and modern discipline.</p>
+          <h3>Synthesis</h3>
+          <p>Analyzing complex data to drive clear, actionable decisions.</p>
         </div>
       </div>
     </section>
 
-    <!-- LINKS -->
     <section>
-      <span class="label">Elsewhere</span>
+      <span class="label">Network</span>
       <div class="links">
         <a class="link-row" href="https://linkedin.com/in/amittsaha">
           <span>LinkedIn</span>
@@ -223,20 +241,16 @@
           <span>Substack</span>
           <span class="link-meta">Writing</span>
         </a>
-        <a class="link-row" href="https://medium.com/@amittsaha">
-          <span>Medium</span>
-          <span class="link-meta">Essays</span>
-        </a>
         <a class="link-row" href="https://instagram.com/theamitsahaa">
           <span>Instagram</span>
-          <span class="link-meta">Visual</span>
+          <span class="link-meta">Visual Identity</span>
         </a>
       </div>
     </section>
 
     <footer>
-      <span>© 2026 Amitt Saha</span>
-      <span>Built with intent</span>
+      <span>© 2026 Amit Saha</span>
+      
     </footer>
 
   </main>

@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Amit Saha — Software Engineer</title>
+  <title>Amit Saha</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -12,13 +14,17 @@
     :root {
       --bg: #050505;
       --text: #ffffff;
-      --text-dim: #666666;
+      --text-dim: #6b6b6b;
       --accent: #d4d4d8;
       --border: rgba(255, 255, 255, 0.08);
-      --transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background-color: var(--bg);
@@ -30,140 +36,164 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 820px;
       margin: 0 auto;
-      padding: 120px 32px 60px;
+      padding: 120px 32px 64px;
     }
 
-    /* TOP NAVIGATION */
+    /* NAV */
     nav {
-      position: absolute;
-      top: 0; left: 0; width: 100%;
-      padding: 48px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 32px 48px;
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
-      letter-spacing: 0.1em;
+      font-size: 11px;
+      letter-spacing: 0.12em;
       color: var(--text-dim);
+      text-transform: uppercase;
+      background: linear-gradient(to bottom, rgba(5,5,5,0.9), rgba(5,5,5,0));
+      z-index: 10;
+    }
+
+    /* HERO */
+    header {
+      margin-bottom: 96px;
+    }
+
+    .name-title {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 20px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    /* HERO SECTION */
-    header { margin-bottom: 100px; }
-    
-    .name-title {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--accent);
-      margin-bottom: 24px;
-      display: block;
-      letter-spacing: 0.05em;
-    }
-
     h1 {
-      font-size: clamp(36px, 8vw, 64px);
+      font-size: clamp(36px, 7vw, 60px);
       font-weight: 500;
       letter-spacing: -0.04em;
-      line-height: 1.05;
-      margin-bottom: 32px;
+      line-height: 1.08;
+      margin-bottom: 28px;
     }
 
     .hero-description {
       font-size: 20px;
-      color: var(--text-dim);
       font-weight: 300;
-      max-width: 600px;
+      color: var(--text-dim);
+      max-width: 620px;
     }
 
-    /* SECTION STYLING */
-    section { margin-bottom: 80px; }
+    /* SECTIONS */
+    section {
+      margin-bottom: 88px;
+    }
 
     .label {
+      display: block;
       font-size: 10px;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      letter-spacing: 0.25em;
       color: var(--text-dim);
       margin-bottom: 40px;
-      display: block;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
     }
 
-    /* TECH STACK LIST */
+    /* STACK */
     .stack-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 16px;
+      gap: 20px;
     }
 
     .stack-item {
       font-size: 15px;
-      color: var(--text);
       font-weight: 400;
-      padding: 12px 0;
+      color: var(--text);
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
     }
 
     /* LINKS */
+    .links-grid {
+      display: flex;
+      flex-direction: column;
+    }
+
     .link-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 0;
+      padding: 22px 0;
       text-decoration: none;
       color: var(--text);
       border-bottom: 1px solid var(--border);
-      transition: var(--transition);
+      transition: color var(--transition), border-color var(--transition);
     }
 
     .link-row:hover {
       color: var(--accent);
-      padding-left: 12px;
-      border-bottom-color: var(--text);
+      border-bottom-color: var(--accent);
     }
 
     .link-meta {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-dim);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     /* FOOTER */
     footer {
-      margin-top: 100px;
+      margin-top: 96px;
       padding-top: 40px;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       font-size: 11px;
-      color: #444;
+      color: #4b4b4b;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
     }
 
     @media (max-width: 600px) {
-      nav { padding: 32px 24px; }
-      .container { padding: 140px 24px 60px; }
+      nav {
+        padding: 24px;
+      }
+      .container {
+        padding: 140px 24px 60px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <nav>
-    <span>Portfolio / 2026</span>
+    <span>Portfolio · 2026</span>
     <span>Kolkata, IN</span>
   </nav>
 
   <main class="container">
-    
+
     <header>
-      <span class="name-title">AMIT SAHA</span>
-      <h1>Architecting Digital<br/>Infrastructure.</h1>
-      <p class="hero-description">Software Engineer focused on the intersection of scalable systems and aesthetic precision.</p>
+      <span class="name-title">Amit Saha</span>
+      <h1>
+        Building digital systems<br />
+        with clarity and intent.
+      </h1>
+      <p class="hero-description">
+        Software engineer focused on scalable systems, thoughtful design,
+        and the long-term craft of building reliable software.
+      </p>
     </header>
 
     <section>
-      <span class="label">Expertise</span>
+      <span class="label">Working With</span>
       <div class="stack-grid">
         <div class="stack-item">Java</div>
         <div class="stack-item">Kotlin</div>
@@ -175,7 +205,7 @@
     </section>
 
     <section>
-      <span class="label">Network</span>
+      <span class="label">Elsewhere</span>
       <div class="links-grid">
         <a href="https://linkedin.com/in/amittsaha" class="link-row">
           <span>LinkedIn</span>
@@ -197,294 +227,11 @@
     </section>
 
     <footer>
-      <span>Amit Saha © 2026</span>
-      <span>Built with Intent</span>
-    </footer>
-
-  </main>
-
-</body>
-</html>
-      mix-blend-mode: difference;
-    }
-
-    .logo {
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 15px;
-    }
-
-    /* HERO SECTION */
-    header {
-      margin-bottom: 120px;
-    }
-
-    h1 {
-      font-size: clamp(32px, 7vw, 56px);
-      font-weight: 400;
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      color: #fff;
-    }
-
-    .hero-sub {
-      font-size: 18px;
-      color: var(--text-dim);
-      max-width: 500px;
-      font-weight: 300;
-    }
-
-    /* SECTIONS */
-    .section {
-      margin-bottom: 100px;
-      opacity: 0; /* Animation ready */
-      transform: translateY(20px);
-      animation: fadeIn 1s forwards ease-out 0.3s;
-    }
-
-    .label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--text-dim);
-      margin-bottom: 32px;
-      display: block;
-    }
-
-    .description {
-      font-size: 24px;
-      font-weight: 300;
-      line-height: 1.6;
-      color: var(--text);
-      max-width: 750px;
-    }
-
-    .description span {
-      color: var(--text-dim);
-    }
-
-    /* LINK STYLES */
-    .links-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .row-link {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--text);
-      transition: var(--transition);
-    }
-
-    .row-link:hover {
-      padding-left: 10px;
-      color: var(--accent);
-      border-bottom-color: var(--text-dim);
-    }
-
-    .row-link span:last-child {
-      font-size: 13px;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    /* FOOTER */
-    footer {
-      margin-top: 150px;
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      color: var(--text-dim);
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .container { padding: 100px 24px 40px; }
-      h1 { margin-bottom: 16px; }
-      .description { font-size: 20px; }
-      nav { padding: 24px; }
-    }
-  </style>
-</head>
-
-<body>
-
-  <nav>
-    <a href="#" class="logo">AMIT SAHA</a>
-    <span class="logo">2026</span>
-  </nav>
-
-  <main class="container">
-    
-    <header>
-      <h1>Architecting Digital<br/>Reliability.</h1>
-      <p class="hero-sub">Software Engineer specializing in robust systems and minimalist design execution.</p>
-    </header>
-
-    <section class="section">
-      <span class="label">Manifesto</span>
-      <p class="description">
-        I believe in <strong>precision</strong> over complexity. <span>Currently focused on building scalable backends and exploring the intersection of engineering discipline and aesthetic utility.</span>
-      </p>
-    </section>
-
-    <section class="section">
-      <span class="label">Presence</span>
-      <div class="links-grid">
-        <a href="https://linkedin.com/in/amittsaha" class="row-link">
-          <span>LinkedIn</span>
-          <span>Professional Network</span>
-        </a>
-        <a href="https://substack.com/@amittsaha" class="row-link">
-          <span>Substack</span>
-          <span>Technical Writing</span>
-        </a>
-        <a href="https://medium.com/@amittsaha" class="row-link">
-          <span>Medium</span>
-          <span>Insights</span>
-        </a>
-        <a href="https://instagram.com/theamitsahaa" class="row-link">
-          <span>Instagram</span>
-          <span>Visuals</span>
-        </a>
-      </div>
-    </section>
-
-    <footer>
-      <span>CALCUTTA / GLOBAL</span>
-      <span>EST. 2026</span>
-    </footer>
-
-  </main>
-
-</body>
-</html>
-
-    .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      background: #111;
-    }
-
-    .card h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    /* SOCIALS */
-    .socials {
-      display: flex;
-      gap: 40px;
-      margin-top: 40px;
-    }
-
-    .social-link {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .social-link:hover {
-      color: var(--accent);
-    }
-
-    .social-link svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    footer {
-      margin-top: 120px;
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: #444;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    @media (max-width: 600px) {
-      .grid { grid-template-columns: 1fr; }
-      .container { padding: 60px 24px; }
-      .socials { gap: 20px; flex-wrap: wrap; }
-    }
-  </style>
-</head>
-
-<body>
-  <main class="container">
-    <div class="mark">AMITT SAHA</div>
-
-    <section>
-      <h1>Building quietly.<br/>Thinking clearly.</h1>
-      <p class="tagline">Engineer & Strategist focused on compounding systems.</p>
-    </section>
-
-    <section class="section">
-      <span class="section-label">Philosophy</span>
-      <p class="statement">
-        I’m interested in <strong>systems</strong>, <strong>discipline</strong>,
-        and the long arc of becoming competent. I care more about how decisions 
-        compound—in technology, habits, and life.
-      </p>
-    </section>
-
-    <section class="section">
-      <span class="section-label">Selected Works</span>
-      <div class="grid">
-        <a href="#" class="card">
-          <h3>System Architecture</h3>
-          <p>Designing scalable backends with focus on performance and reliability.</p>
-        </a>
-        <a href="#" class="card">
-          <h3>Digital Writing</h3>
-          <p>Thoughts on technology and human behavior via Substack.</p>
-        </a>
-      </div>
-    </section>
-
-    <section class="section">
-      <span class="section-label">Connect</span>
-      <div class="socials">
-        <a href="https://linkedin.com/in/amittsaha" class="social-link">LinkedIn</a>
-        <a href="https://substack.com/@amittsaha" class="social-link">Substack</a>
-        <a href="https://medium.com/@amittsaha" class="social-link">Medium</a>
-        <a href="https://instagram.com/theamitsahaa" class="social-link">Instagram</a>
-      </div>
-    </section>
-
-    <footer>
-      <span>© 2026 Amitt Saha</span>
+      <span>© 2026 Amit Saha</span>
       <span>Built with intent</span>
     </footer>
+
   </main>
+
 </body>
 </html>

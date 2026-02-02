@@ -8,14 +8,25 @@
 
   <style>
     :root {
+      /* Dark Theme (Default) */
       --bg: #080808;
       --bg-card: rgba(255, 255, 255, 0.02);
       --text-main: #fcfcfc;
       --text-muted: #949494;
-      --accent: #c5a47e; /* Champagne Gold */
+      --accent: #c5a47e;
       --accent-dim: rgba(197, 164, 126, 0.1);
       --border: rgba(255, 255, 255, 0.05);
-      --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      --transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    [data-theme="light"] {
+      --bg: #f9f7f2; /* Creamy Paper White */
+      --bg-card: rgba(0, 0, 0, 0.02);
+      --text-main: #1a1a1a;
+      --text-muted: #666666;
+      --accent: #8e7355;
+      --accent-dim: rgba(142, 115, 85, 0.1);
+      --border: rgba(0, 0, 0, 0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,9 +37,27 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.8;
       -webkit-font-smoothing: antialiased;
+      transition: background 0.8s ease, color 0.8s ease;
     }
 
-    .container { max-width: 900px; margin: 0 auto; padding: 140px 40px 80px; }
+    .container { max-width: 900px; margin: 0 auto; padding: 100px 40px 80px; }
+
+    /* THEME TOGGLE */
+    .theme-toggle {
+      position: fixed;
+      top: 40px;
+      right: 40px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 8px 16px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
 
     .signature {
       font-size: 11px;
@@ -68,15 +97,8 @@
       padding-bottom: 15px;
     }
 
-    /* INTERACTIVE TABS SECTION */
-    .tabs-container {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 30px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-    }
-
+    /* TABS */
+    .tabs-container { display: flex; gap: 15px; margin-bottom: 30px; overflow-x: auto; }
     .tab-btn {
       background: transparent;
       border: 1px solid var(--border);
@@ -87,44 +109,51 @@
       letter-spacing: 0.1em;
       cursor: pointer;
       transition: var(--transition);
-      white-space: nowrap;
     }
-
-    .tab-btn.active {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-dim);
-    }
+    .tab-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
     .tab-content {
       background: var(--bg-card);
       border: 1px solid var(--border);
       padding: 40px;
-      min-height: 150px;
       display: none;
       animation: fadeIn 0.8s ease;
     }
-
     .tab-content.active { display: block; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* CARDS & LINKS */
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
-    
-    .card {
+    /* CONTACT FORM */
+    .contact-form {
+      display: grid;
+      gap: 20px;
+      max-width: 500px;
+    }
+    .input-group input, .input-group textarea {
+      width: 100%;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      padding: 40px;
+      padding: 15px;
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      outline: none;
       transition: var(--transition);
     }
-
-    .card:hover { border-color: var(--accent); transform: translateY(-5px); }
-
-    .card h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 12px; }
+    .input-group input:focus, .input-group textarea:focus { border-color: var(--accent); }
+    
+    .submit-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 11px;
+      cursor: pointer;
+      width: fit-content;
+      transition: var(--transition);
+    }
+    .submit-btn:hover { opacity: 0.8; transform: translateX(5px); }
 
     .link-row {
       display: flex;
@@ -135,8 +164,7 @@
       color: var(--text-main);
       transition: var(--transition);
     }
-
-    .link-row:hover { color: var(--accent); padding-left: 15px; border-bottom-color: var(--accent); }
+    .link-row:hover { color: var(--accent); padding-left: 15px; }
 
     footer {
       margin-top: 80px;
@@ -146,90 +174,80 @@
       justify-content: space-between;
       font-size: 10px;
       letter-spacing: 0.2em;
-      color: #555;
+      color: #777;
     }
   </style>
 </head>
 
 <body>
+  <button class="theme-toggle" onclick="toggleTheme()">Appearance</button>
+
   <main class="container">
     <div class="signature">Amit Saha</div>
 
     <h1>Building quietly.<br>Thinking clearly.</h1>
-    <p class="tagline">A software engineer dedicated to the craft of clean code, scalable architecture, and systems that endure.</p>
+    <p class="tagline">Software engineer refining the digital landscape through Java, Kotlin, and architectural discipline.</p>
 
     <section>
       <span class="label">Expertise</span>
       <div class="tabs-container">
         <button class="tab-btn active" onclick="openTab(event, 'backend')">Backend</button>
         <button class="tab-btn" onclick="openTab(event, 'mobile')">Mobile</button>
-        <button class="tab-btn" onclick="openTab(event, 'data')">Data</button>
       </div>
-
       <div id="backend" class="tab-content active">
-        <h3>Core Infrastructure</h3>
-        <p>Specializing in Java, Kotlin, and Spring Boot. I build robust, thread-safe backend systems designed for high-concurrency and long-term stability.</p>
+        <h3>Architecture & Scale</h3>
+        <p>Designing distributed systems with Spring Boot and SQL, focusing on integrity and performance.</p>
       </div>
-
       <div id="mobile" class="tab-content">
-        <h3>Mobile Engineering</h3>
-        <p>Developing modern Android applications with a focus on clean architecture, performance optimization, and seamless user experiences.</p>
-      </div>
-
-      <div id="data" class="tab-content">
-        <h3>Data Analysis</h3>
-        <p>Leveraging SQL and modern analytical frameworks to transform raw data into clear, actionable intelligence for system growth.</p>
+        <h3>Mobile Systems</h3>
+        <p>Crafting intuitive Android experiences that marry clean code with high utility.</p>
       </div>
     </section>
 
     <section>
-      <span class="label">Philosophy</span>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Systems over shortcuts</h3>
-          <p>Prioritizing architectures that compound and scale through technical discipline.</p>
+      <span class="label">Inquiries</span>
+      <form class="contact-form" action="#" method="POST">
+        <div class="input-group">
+          <input type="text" placeholder="NAME" required>
         </div>
-        <div class="card">
-          <h3>Clarity beats noise</h3>
-          <p>Minimalism in tooling and maximum precision in execution.</p>
+        <div class="input-group">
+          <input type="email" placeholder="EMAIL" required>
         </div>
-      </div>
+        <div class="input-group">
+          <textarea rows="4" placeholder="MESSAGE"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Inquiry</button>
+      </form>
     </section>
 
     <section>
-      <span class="label">Network</span>
+      <span class="label">Elsewhere</span>
       <div class="links">
-        <a class="link-row" href="https://linkedin.com/in/amittsaha">
-          <span>LinkedIn</span>
-          <span style="font-size: 10px; color: var(--accent);">Professional →</span>
-        </a>
-        <a class="link-row" href="https://instagram.com/theamitsahaa">
-          <span>Instagram</span>
-          <span style="font-size: 10px; color: var(--accent);">Visual →</span>
-        </a>
+        <a class="link-row" href="https://linkedin.com/in/amittsaha"><span>LinkedIn</span><span>Professional</span></a>
+        <a class="link-row" href="https://instagram.com/theamitsahaa"><span>Instagram</span><span>Visual</span></a>
       </div>
     </section>
 
     <footer>
       <span>© 2026 Amit Saha</span>
-      <span>Built with Intent</span>
+      <span>Kolkata, WB</span>
     </footer>
   </main>
 
   <script>
+    function toggleTheme() {
+      const body = document.body;
+      const current = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    }
+
     function openTab(evt, tabName) {
-      var i, tabcontent, tablinks;
+      let i, tabcontent, tablinks;
       tabcontent = document.getElementsByClassName("tab-content");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-        tabcontent[i].classList.remove("active");
-      }
+      for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
       tablinks = document.getElementsByClassName("tab-btn");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
+      for (i = 0; i < tablinks.length; i++) tablinks[i].className = tablinks[i].className.replace(" active", "");
       document.getElementById(tabName).style.display = "block";
-      document.getElementById(tabName).classList.add("active");
       evt.currentTarget.className += " active";
     }
   </script>

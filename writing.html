@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Writing — Amitt Saha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #080808;
+      --bg-card: rgba(255, 255, 255, 0.025);
+      --text-main: #f5f5f5;
+      --text-muted: #8e8e8e;
+      --accent: #c5a47e;
+      --border: rgba(255, 255, 255, 0.06);
+      --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 40px 80px;
+    }
+
+    /* NAV BACK */
+    .back-link {
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 40px;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    /* SIGNATURE */
+    .signature {
+      font-size: 11px;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 56px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 8vw, 64px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+
+    .tagline {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin-bottom: 120px;
+    }
+
+    section {
+      margin-bottom: 120px;
+    }
+
+    .label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 36px;
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: 120px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      color: #777;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 90px 24px 60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <a href="index.html" class="back-link">← Home</a>
+
+    <div class="signature">Amit Saha</div>
+
+    <h1>Writing</h1>
+
+    <p class="tagline">
+      Notes, reflections, and observations on books,
+      philosophy, technology, and disciplined thinking.
+    </p>
+
+    <!-- NOTES & REFLECTIONS -->
+    <section>
+      <span class="label">Notes & Reflections</span>
+
+      <div class="grid">
+        <a href="#" class="card">
+          <h3>Notes on Meditations</h3>
+          <p>
+            Reflections on discipline, restraint, and inner order
+            inspired by Marcus Aurelius.
+          </p>
+        </a>
+
+        <a href="#" class="card">
+          <h3>On discipline and freedom</h3>
+          <p>
+            Why structure and self-control are prerequisites
+            for long-term independence.
+          </p>
+        </a>
+
+        <a href="#" class="card">
+          <h3>Reading Atomic Habits critically</h3>
+          <p>
+            What the book explains well — and where it simplifies
+            complex human behavior.
+          </p>
+        </a>
+
+        <a href="#" class="card">
+          <h3>Reflections on ambition</h3>
+          <p>
+            The difference between quiet ambition and noisy desire.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY NOTES -->
+    <section>
+      <span class="label">Technology Notes</span>
+
+      <div class="grid">
+        <a href="#" class="card">
+          <h3>Technology is a tool</h3>
+          <p>
+            On separating thinking from tools in modern
+            engineering culture.
+          </p>
+        </a>
+
+        <a href="#" class="card">
+          <h3>Thoughts on modern system design</h3>
+          <p>
+            Why complexity is often a design failure,
+            not a technical necessity.
+          </p>
+        </a>
+
+        <a href="#" class="card">
+          <h3>Where most tech trends go wrong</h3>
+          <p>
+            Observations on hype, incentives, and misaligned priorities.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Amit Saha</span>
+      <span>Writing</span>
+    </footer>
+
+  </main>
+</body>
+</html>

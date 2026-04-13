@@ -25,6 +25,16 @@
       --bg-hover: rgba(255,255,255,0.05);
     }
 
+    /* ── Light theme (added back) ── */
+    html[data-theme="light"] {
+      --bg: #f5f0e8;
+      --text: #1a1815;
+      --muted: #8a8278;
+      --accent: #8b6840;
+      --border: rgba(0,0,0,0.09);
+      --bg-hover: rgba(255,255,255,0.85);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -33,6 +43,7 @@
       font-family: 'Jost', sans-serif;
       font-weight: 300;
       line-height: 1.8;
+      transition: background var(--t), color var(--t);
     }
 
     .container {
@@ -41,7 +52,60 @@
       padding: 120px 40px;
     }
 
-    /* NAME (UPGRADED) */
+    /* ── Theme toggle (elegant, with icon) ── */
+    .theme-toggle {
+      position: fixed;
+      top: 28px;
+      right: 36px;
+      z-index: 999;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.4s var(--ease), color 0.4s var(--ease), background 0.4s var(--ease), transform 0.5s var(--ease);
+      outline: none;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(212,180,131,0.07);
+      transform: rotate(20deg);
+    }
+
+    /* Sun icon (shown in dark mode → click to go light) */
+    .icon-sun, .icon-moon { width: 16px; height: 16px; display: block; }
+
+    html[data-theme="dark"]  .icon-moon { display: none; }
+    html[data-theme="dark"]  .icon-sun  { display: block; }
+    html[data-theme="light"] .icon-sun  { display: none; }
+    html[data-theme="light"] .icon-moon { display: block; }
+
+    /* ── Page entrance animations (added back) ── */
+    .page-enter {
+      animation: fadeUp 0.85s var(--ease) both;
+    }
+    .page-enter:nth-child(1) { animation-delay: 0.05s; }
+    .page-enter:nth-child(2) { animation-delay: 0.13s; }
+    .page-enter:nth-child(3) { animation-delay: 0.21s; }
+    .page-enter:nth-child(4) { animation-delay: 0.29s; }
+    .page-enter:nth-child(5) { animation-delay: 0.37s; }
+    .page-enter:nth-child(6) { animation-delay: 0.45s; }
+    .page-enter:nth-child(7) { animation-delay: 0.52s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── All your original styles below — untouched ── */
+
     .signature {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(32px, 6vw, 52px);
@@ -168,20 +232,39 @@
     }
 
     @media (max-width: 600px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
+      .hero { grid-template-columns: 1fr; }
+      .theme-toggle { top: 18px; right: 20px; }
     }
   </style>
 </head>
 
 <body>
 
+<!-- Elegant circular theme toggle with SVG sun/moon -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+  <!-- Sun: shown in dark mode -->
+  <svg class="icon-sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+    <circle cx="8" cy="8" r="3"/>
+    <line x1="8" y1="1" x2="8" y2="2.5"/>
+    <line x1="8" y1="13.5" x2="8" y2="15"/>
+    <line x1="1" y1="8" x2="2.5" y2="8"/>
+    <line x1="13.5" y1="8" x2="15" y2="8"/>
+    <line x1="3.05" y1="3.05" x2="4.1" y2="4.1"/>
+    <line x1="11.9" y1="11.9" x2="12.95" y2="12.95"/>
+    <line x1="12.95" y1="3.05" x2="11.9" y2="4.1"/>
+    <line x1="4.1" y1="11.9" x2="3.05" y2="12.95"/>
+  </svg>
+  <!-- Moon: shown in light mode -->
+  <svg class="icon-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13.5 10A6 6 0 0 1 6 2.5a6 6 0 1 0 7.5 7.5z"/>
+  </svg>
+</button>
+
 <main class="container">
 
-  <div class="signature">Amit Saha</div>
+  <div class="signature page-enter">Amit Saha</div>
 
-  <div class="hero">
+  <div class="hero page-enter">
     <img src="profile.jpg" alt="Amit Saha">
     <div>
       <h1>Systems, <em>Structure</em>, Intent.</h1>
@@ -189,7 +272,7 @@
     </div>
   </div>
 
-  <section>
+  <section class="page-enter">
     <span class="label">Orientation</span>
     <div class="grid">
       <div class="card">
@@ -203,7 +286,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="page-enter">
     <span class="label">Domains</span>
     <div class="grid">
       <div class="card">
@@ -221,7 +304,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="page-enter">
     <span class="label">Elsewhere</span>
     <div class="links">
       <a class="link-row" href="https://linkedin.com/in/amittsaha">LinkedIn</a>
@@ -231,12 +314,25 @@
     </div>
   </section>
 
-  <footer>
+  <footer class="page-enter">
     <span>© 2026 Amit Saha</span>
     <span>India</span>
   </footer>
 
 </main>
+
+<script>
+  const root = document.documentElement;
+
+  function toggleTheme() {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  }
+
+  const saved = localStorage.getItem("theme");
+  if (saved) root.setAttribute("data-theme", saved);
+</script>
 
 </body>
 </html>

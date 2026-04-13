@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Amitt Saha | Software Engineer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" 
-    <link rel="icon" type="image/png" href="profile.jpg">
-  
-    />
+  <title>Amit Saha</title>
+
+  <!-- Favicon (your DP) -->
+  <link rel="icon" type="image/png" href="profile.jpg" />
+
+  <!-- Mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080808">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* =====================
-       THEME VARIABLES
-    ===================== */
-    .social-icon {
-  width: 14px;
-  height: 14px;
-  margin-right: 10px;
-  vertical-align: middle;
-  flex-shrink: 0;
-}
-
-
     :root {
       --transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     }
@@ -52,21 +47,19 @@
     body {
       background: var(--bg);
       color: var(--text-main);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.75;
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.8;
       -webkit-font-smoothing: antialiased;
       transition: var(--transition);
     }
 
     .container {
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
-      padding: 120px 40px 80px;
+      padding: 120px 32px 80px;
     }
 
-    /* =====================
-       THEME TOGGLE
-    ===================== */
+    /* THEME BUTTON */
 
     .theme-toggle {
       position: fixed;
@@ -88,12 +81,10 @@
       color: var(--accent);
     }
 
-    /* =====================
-       HERO
-    ===================== */
+    /* HERO */
 
     .signature {
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 0.45em;
       text-transform: uppercase;
       color: var(--accent);
@@ -102,37 +93,44 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 120px 1fr;
+      grid-template-columns: 110px 1fr;
       gap: 36px;
       align-items: center;
       margin-bottom: 120px;
     }
 
     .hero img {
-      width: 120px;
-      height: 120px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       object-fit: cover;
       border: 1px solid var(--border);
+      filter: grayscale(20%) contrast(105%);
+      transition: var(--transition);
+    }
+
+    .hero img:hover {
+      filter: grayscale(0%) contrast(110%);
     }
 
     h1 {
-      font-size: clamp(40px, 8vw, 64px);
-      font-weight: 500;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 8vw, 68px);
+      font-weight: 400;
       letter-spacing: -0.02em;
       line-height: 1.1;
       margin-bottom: 24px;
     }
 
     .tagline {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 300;
       color: var(--text-muted);
-      max-width: 620px;
+      max-width: 520px;
     }
 
     section {
-      margin-bottom: 120px;
+      margin-bottom: 110px;
     }
 
     .label {
@@ -146,42 +144,38 @@
       display: block;
     }
 
-    /* =====================
-       CARDS
-    ===================== */
+    /* CARDS */
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 26px;
     }
 
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      padding: 36px;
+      padding: 30px;
       transition: var(--transition);
     }
 
     .card:hover {
       border-color: var(--accent);
-      transform: translateY(-6px);
+      transform: translateY(-4px);
     }
 
     .card h3 {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 500;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .card p {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-muted);
     }
 
-    /* =====================
-       LINKS
-    ===================== */
+    /* LINKS */
 
     .links {
       display: flex;
@@ -191,7 +185,7 @@
     .link-row {
       display: flex;
       justify-content: space-between;
-      padding: 26px 0;
+      padding: 24px 0;
       border-bottom: 1px solid var(--border);
       text-decoration: none;
       color: var(--text-main);
@@ -200,7 +194,8 @@
 
     .link-row:hover {
       color: var(--accent);
-      padding-left: 14px;
+      padding-left: 10px;
+      letter-spacing: 0.03em;
     }
 
     footer {
@@ -217,7 +212,7 @@
 
     @media (max-width: 600px) {
       .container {
-        padding: 90px 24px 60px;
+        padding: 90px 20px 60px;
       }
 
       .hero {
@@ -229,23 +224,23 @@
 
 <body>
 
-<button class="theme-toggle" onclick="toggleTheme()">Theme Change</button>
+<button class="theme-toggle" onclick="toggleTheme()">Theme</button>
 
 <main class="container">
 
   <!-- HERO -->
-  <div class="signature">Amitt Saha</div>
+  <div class="signature">Amit Saha</div>
 
   <div class="hero">
-    <img src="profile.jpg" alt="Amitt Saha" />
+    <img src="profile.jpg" alt="Amit Saha" />
     <div>
       <h1>
         Engineering clarity <br />
-        in complex worlds
+        in complex systems
       </h1>
       <p class="tagline">
-        A systematic mind with a broader horizon.<br />
-          Thinking in structures. Living with intent...
+        Thinking in systems.<br />
+        Acting with intent.
       </p>
     </div>
   </div>
@@ -256,15 +251,11 @@
     <div class="grid">
       <div class="card">
         <h3>Strategic Thinking</h3>
-        <p>
-          I look beyond isolated problems to the structure beneath them - wheather its tech,work and human systems.
-        </p>
+        <p>Looking beyond problems to underlying structure.</p>
       </div>
       <div class="card">
         <h3>Systems Thinking</h3>
-        <p>
-          I value loyality, fundamentals, and skills that compound quietly over time.
-        </p>
+        <p>Focusing on fundamentals that compound over time.</p>
       </div>
     </div>
   </section>
@@ -275,21 +266,15 @@
     <div class="grid">
       <div class="card">
         <h3>Long-Term Craft</h3>
-        <p>
-          A commitment to fundamentals, depth, and work built to endure.
-        </p>
+        <p>Built on depth, consistency, and durability.</p>
       </div>
       <div class="card">
         <h3>Writing & Ideas</h3>
-        <p>
-          A practice of exploring clarity, discipline, and modern life through thought.
-        </p>
+        <p>Exploring clarity, discipline, and modern systems.</p>
       </div>
       <div class="card">
-        <h3>Approch</h3>
-        <p>
-          A strategist with roots in software and systems
-        </p>
+        <h3>Approach</h3>
+        <p>Structured thinking rooted in engineering.</p>
       </div>
     </div>
   </section>
@@ -299,31 +284,51 @@
     <span class="label">Interests</span>
     <div class="grid">
       <div class="card">
-        <h3>
-           <a href="writing.html" style="color:inherit; text-decoration:none;">
-        Reading & Study
-        </h3>
-        <p>Tech, AI, Culture, Philosophy, Quantum physics, strategy, and timeless ideas.</p>
+        <h3>Reading & Study</h3>
+        <p>Technology, AI, philosophy, and timeless systems.</p>
       </div>
       <div class="card">
         <h3>Style & Presentation</h3>
-        <p>Composure, restraint, and understated elegance.</p>
+        <p>Composure, restraint, and subtle elegance.</p>
       </div>
       <div class="card">
         <h3>Health & Movement</h3>
-        <p>Strength and discipline.</p>
+        <p>Discipline through physical strength.</p>
       </div>
     </div>
   </section>
 
-  <!-- ELSEWHERE --> <section>
-    <span class="label">Elsewhere</span> <div class="links"> 
-    <!-- LinkedIn --> <a class="link-row" href="https://linkedin.com/in/amittsaha"> <span> <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"> <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0.5 8.5h4V23h-4zM8.5 8.5h3.8v2h.1c.5-1 1.8-2.1 3.7-2.1 4 0 4.8 2.6 4.8 6v6.6h-4v-5.8c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V23h-4z"/> </svg> LinkedIn </span> <span>Professional</span> </a> 
-      <!-- Substack --> <a class="link-row" href="https://substack.com/@amittsaha"> <span> <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"> <path d="M3 3h18v4H3zM3 9h18v2H3zM3 13h18l-9 8z"/> </svg> Substack </span> <span>Writing</span> </a> <!-- Medium --> <a class="link-row" href="amittsaha.medium.com"> <span> <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"> <path d="M2 6.5l6 11h1l6-11H2zm14.5 0l5.5 11h-1l-5.5-11z"/> </svg> Medium </span> <span>Essays</span> </a> <!-- Instagram --> <a class="link-row" href="https://instagram.com/theamitsahaa"> <span> <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"> <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.5.6.3 1 .6 1.4 1 .4.4.7.8 1 1.4.2.4.4 1 .5 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.5 2.2-.3.6-.6 1-1 1.4-.4.4-.8.7-1.4 1-.4.2-1 .4-2.2.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.5-.6-.3-1-.6-1.4-1-.4-.4-.7-.8-1-1.4-.2-.4-.4-1-.5-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.8.5-2.2.3-.6.6-1 1-1.4.4-.4.8-.7 1.4-1 .4-.2 1-.4 2.2-.5 1.3-.1 1.7-.1 4.9-.1zm0 3.6a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zm0 10a3.8 3.8 0 110-7.6 3.8 3.8 0 010 7.6zm6.4-10.5a1.4 1.4 0 11-2.8 0 1.4 1.4 0 012.8 0z"/> </svg> Instagram </span> <span>Visual</span> </a> </div> </section>
+  <!-- LINKS -->
+  <section>
+    <span class="label">Elsewhere</span>
+    <div class="links">
+
+      <a class="link-row" href="https://linkedin.com/in/amittsaha">
+        <span>LinkedIn</span>
+        <span>Professional</span>
+      </a>
+
+      <a class="link-row" href="https://substack.com/@amittsaha">
+        <span>Substack</span>
+        <span>Writing</span>
+      </a>
+
+      <a class="link-row" href="https://amittsaha.medium.com">
+        <span>Medium</span>
+        <span>Essays</span>
+      </a>
+
+      <a class="link-row" href="https://instagram.com/theamitsahaa">
+        <span>Instagram</span>
+        <span>Visual</span>
+      </a>
+
+    </div>
+  </section>
 
   <footer>
-    <span>© 2026 Amitt Saha</span>
-    <span>📍 India</span>
+    <span>© 2026 Amit Saha</span>
+    <span>India</span>
   </footer>
 
 </main>

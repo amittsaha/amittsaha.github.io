@@ -1,252 +1,395 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-
+ 
 <head>
   <meta charset="UTF-8" />
   <title>Amit Saha</title>
-
-  <!-- Favicon (your DP) -->
   <link rel="icon" type="image/png" href="profile.jpg" />
-
-  <!-- Mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#080808">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+ 
   <style>
+ 
+    /* ── Variables ───────────────────────────────────── */
     :root {
-      --transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      --ease: cubic-bezier(0.19, 1, 0.22, 1);
+      --t: 0.5s var(--ease);
     }
-
+ 
     html[data-theme="dark"] {
-      --bg: #080808;
-      --bg-card: rgba(255, 255, 255, 0.025);
-      --text-main: #f5f5f5;
-      --text-muted: #8e8e8e;
-      --accent: #c5a47e;
-      --border: rgba(255, 255, 255, 0.06);
+      --bg:        #080808;
+      --bg-card:   rgba(255,255,255,0.028);
+      --bg-hover:  rgba(255,255,255,0.05);
+      --text:      #ede9e2;
+      --muted:     #6a6560;
+      --accent:    #c5a47e;
+      --accent-lo: rgba(197,164,126,0.08);
+      --border:    rgba(255,255,255,0.07);
+      --border-hi: rgba(197,164,126,0.55);
+      --shadow:    0 0 0 1px var(--border);
     }
-
+ 
     html[data-theme="light"] {
-      --bg: #f6f2ec;
-      --bg-card: #ffffff;
-      --text-main: #1f1f1f;
-      --text-muted: #6f6a63;
-      --accent: #9a7b4f;
-      --border: rgba(0, 0, 0, 0.08);
+      --bg:        #f5f0e8;
+      --bg-card:   rgba(255,255,255,0.72);
+      --bg-hover:  rgba(255,255,255,0.95);
+      --text:      #1a1815;
+      --muted:     #8a8278;
+      --accent:    #8b6840;
+      --accent-lo: rgba(139,104,64,0.07);
+      --border:    rgba(0,0,0,0.09);
+      --border-hi: rgba(139,104,64,0.5);
+      --shadow:    0 0 0 1px var(--border);
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+ 
+    /* ── Reset ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    /* ── Custom cursor ───────────────────────────────── */
+    html { cursor: none; }
+ 
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform 0.1s var(--ease), opacity 0.3s, width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s;
+      will-change: left, top;
     }
-
+ 
+    .cursor-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: left 0.12s var(--ease), top 0.12s var(--ease), width 0.35s var(--ease), height 0.35s var(--ease), opacity 0.3s, border-color 0.3s;
+    }
+ 
+    /* ── Scrollbar ───────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+ 
+    /* ── Body ────────────────────────────────────────── */
     body {
       background: var(--bg);
-      color: var(--text-main);
-      font-family: 'Inter', system-ui, sans-serif;
-      line-height: 1.8;
+      color: var(--text);
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
       -webkit-font-smoothing: antialiased;
-      transition: var(--transition);
+      transition: background var(--t), color var(--t);
+      cursor: none;
     }
-
+ 
+    /* ── Page entrance ───────────────────────────────── */
+    .page-enter { animation: fadeUp 0.9s var(--ease) both; }
+    .page-enter:nth-child(2) { animation-delay: 0.1s; }
+    .page-enter:nth-child(3) { animation-delay: 0.18s; }
+    .page-enter:nth-child(4) { animation-delay: 0.26s; }
+    .page-enter:nth-child(5) { animation-delay: 0.34s; }
+    .page-enter:nth-child(6) { animation-delay: 0.42s; }
+    .page-enter:nth-child(7) { animation-delay: 0.50s; }
+ 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    /* ── Layout ──────────────────────────────────────── */
     .container {
       max-width: 860px;
       margin: 0 auto;
-      padding: 120px 32px 80px;
+      padding: 120px 40px 100px;
     }
-
-    /* THEME BUTTON */
-
+ 
+    /* ── Theme toggle ────────────────────────────────── */
     .theme-toggle {
       position: fixed;
-      top: 28px;
-      right: 32px;
+      top: 30px; right: 36px;
       background: transparent;
       border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 10px 14px;
-      font-size: 11px;
-      letter-spacing: 0.2em;
+      color: var(--muted);
+      padding: 9px 16px;
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      cursor: pointer;
-      transition: var(--transition);
+      cursor: none;
+      transition: var(--t);
+      z-index: 100;
     }
-
+ 
     .theme-toggle:hover {
-      border-color: var(--accent);
+      border-color: var(--border-hi);
       color: var(--accent);
+      background: var(--accent-lo);
     }
-
-    /* HERO */
-
+ 
+    /* ── Signature ───────────────────────────────────── */
     .signature {
-      font-size: 13px;
-      letter-spacing: 0.45em;
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      font-weight: 200;
+      letter-spacing: 0.5em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 48px;
+      margin-bottom: 56px;
     }
-
+ 
+    /* ── Hero ────────────────────────────────────────── */
     .hero {
       display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 36px;
+      grid-template-columns: 100px 1fr;
+      gap: 40px;
       align-items: center;
-      margin-bottom: 120px;
+      margin-bottom: 130px;
     }
-
+ 
+    .avatar-wrap {
+      position: relative;
+      width: 100px; height: 100px;
+    }
+ 
+    .avatar-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid var(--border-hi);
+      opacity: 0;
+      transition: opacity 0.4s var(--ease), inset 0.4s var(--ease);
+    }
+ 
+    .avatar-wrap:hover::before { opacity: 1; inset: -9px; }
+ 
     .hero img {
-      width: 110px;
-      height: 110px;
+      width: 100px; height: 100px;
       border-radius: 50%;
       object-fit: cover;
       border: 1px solid var(--border);
-      filter: grayscale(20%) contrast(105%);
-      transition: var(--transition);
+      filter: grayscale(30%) contrast(105%);
+      transition: var(--t);
+      display: block;
     }
-
+ 
     .hero img:hover {
       filter: grayscale(0%) contrast(110%);
     }
-
+ 
     h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(42px, 8vw, 68px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 7.5vw, 66px);
       font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 24px;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      color: var(--text);
     }
-
+ 
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+ 
     .tagline {
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 300;
-      color: var(--text-muted);
-      max-width: 520px;
-    }
-
-    section {
-      margin-bottom: 110px;
-    }
-
-    .label {
-      font-size: 10px;
-      letter-spacing: 0.32em;
+      color: var(--muted);
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 40px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--border);
-      display: block;
     }
-
-    /* CARDS */
-
+ 
+    /* ── Section ─────────────────────────────────────── */
+    section {
+      margin-bottom: 100px;
+    }
+ 
+    .label {
+      display: block;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+ 
+    /* Accent tick on label */
+    .label::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+ 
+    /* ── Cards ───────────────────────────────────────── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 26px;
-    }
-
-    .card {
-      background: var(--bg-card);
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--border);
       border: 1px solid var(--border);
-      padding: 30px;
-      transition: var(--transition);
     }
-
-    .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
+ 
+    .card {
+      background: var(--bg);
+      padding: 28px 26px;
+      transition: background var(--t), color var(--t);
+      position: relative;
+      overflow: hidden;
     }
-
+ 
+    .card::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease);
+    }
+ 
+    .card:hover { background: var(--bg-hover); }
+    .card:hover::after { transform: scaleX(1); }
+ 
     .card h3 {
-      font-size: 17px;
-      font-weight: 500;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
       margin-bottom: 10px;
+      color: var(--text);
+      transition: color var(--t);
     }
-
+ 
+    .card:hover h3 { color: var(--accent); }
+ 
     .card p {
-      font-size: 14px;
-      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
     }
-
-    /* LINKS */
-
-    .links {
-      display: flex;
-      flex-direction: column;
-    }
-
+ 
+    /* ── Links ───────────────────────────────────────── */
+    .links { display: flex; flex-direction: column; }
+ 
     .link-row {
       display: flex;
       justify-content: space-between;
-      padding: 24px 0;
+      align-items: center;
+      padding: 20px 0;
       border-bottom: 1px solid var(--border);
       text-decoration: none;
-      color: var(--text-main);
-      transition: var(--transition);
+      color: var(--text);
+      transition: color var(--t), padding-left var(--t);
+      position: relative;
+      overflow: hidden;
     }
-
+ 
+    .link-row::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transition: transform 0.35s var(--ease);
+    }
+ 
     .link-row:hover {
       color: var(--accent);
-      padding-left: 10px;
-      letter-spacing: 0.03em;
+      padding-left: 16px;
     }
-
+ 
+    .link-row:hover::before { transform: scaleY(1); }
+ 
+    .link-row span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+ 
+    .link-row span:last-child {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color var(--t);
+    }
+ 
+    .link-row:hover span:last-child { color: var(--accent); }
+ 
+    /* ── Footer ──────────────────────────────────────── */
     footer {
-      margin-top: 120px;
-      padding-top: 40px;
+      margin-top: 100px;
+      padding-top: 36px;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
-      font-size: 10px;
-      letter-spacing: 0.28em;
-      color: var(--text-muted);
+      align-items: center;
+      font-size: 9px;
+      font-weight: 200;
+      letter-spacing: 0.3em;
+      color: var(--muted);
       text-transform: uppercase;
     }
-
+ 
+    /* ── Responsive ──────────────────────────────────── */
     @media (max-width: 600px) {
-      .container {
-        padding: 90px 20px 60px;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-      }
+      .container { padding: 80px 20px 60px; }
+      .hero { grid-template-columns: 1fr; gap: 24px; margin-bottom: 80px; }
+      .theme-toggle { top: 20px; right: 20px; }
+      .cursor, .cursor-ring { display: none; }
+      html, body { cursor: auto; }
+      .theme-toggle { cursor: pointer; }
+      .link-row { cursor: pointer; }
     }
+ 
   </style>
 </head>
-
+ 
 <body>
-
+ 
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+ 
 <button class="theme-toggle" onclick="toggleTheme()">Theme</button>
-
+ 
 <main class="container">
-
-  <!-- HERO -->
-  <div class="signature">Amit Saha</div>
-
-  <div class="hero">
-    <img src="profile.jpg" alt="Amit Saha" />
+ 
+  <div class="signature page-enter">Amit Saha</div>
+ 
+  <div class="hero page-enter">
+    <div class="avatar-wrap">
+      <img src="profile.jpg" alt="Amit Saha" />
+    </div>
     <div>
-      <h1>
-        Engineering clarity <br />
-        in complex systems
-      </h1>
-      <p class="tagline">
-        Thinking in systems.<br />
-        Acting with intent.
-      </p>
+      <h1>Systems,<br><em>Structure,</em><br>Intent.</h1>
+      <p class="tagline">Engineer &nbsp;·&nbsp; Author &nbsp;·&nbsp; Architect</p>
     </div>
   </div>
-
-  <!-- ORIENTATION -->
-  <section>
+ 
+  <section class="page-enter">
     <span class="label">Orientation</span>
     <div class="grid">
       <div class="card">
@@ -259,95 +402,125 @@
       </div>
     </div>
   </section>
-
-  <!-- DOMAINS -->
-  <section>
+ 
+  <section class="page-enter">
     <span class="label">Domains</span>
     <div class="grid">
       <div class="card">
-        <h3>Long-Term Craft</h3>
-        <p>Built on depth, consistency, and durability.</p>
+        <h3>Art</h3>
+        <p>Expression through restraint, aesthetics, and form.</p>
       </div>
       <div class="card">
-        <h3>Writing & Ideas</h3>
+        <h3>Writing &amp; Ideas</h3>
         <p>Exploring clarity, discipline, and modern systems.</p>
       </div>
       <div class="card">
         <h3>Approach</h3>
-        <p>Structured thinking rooted in engineering.</p>
+        <p>Clarity, structure, and systems built with intent.</p>
       </div>
     </div>
   </section>
-
-  <!-- INTERESTS -->
-  <section>
+ 
+  <section class="page-enter">
     <span class="label">Interests</span>
     <div class="grid">
       <div class="card">
-        <h3>Reading & Study</h3>
+        <h3>Reading &amp; Study</h3>
         <p>Technology, AI, philosophy, and timeless systems.</p>
       </div>
       <div class="card">
-        <h3>Style & Presentation</h3>
+        <h3>Style &amp; Presentation</h3>
         <p>Composure, restraint, and subtle elegance.</p>
       </div>
       <div class="card">
-        <h3>Health & Movement</h3>
+        <h3>Health &amp; Movement</h3>
         <p>Discipline through physical strength.</p>
       </div>
     </div>
   </section>
-
-  <!-- LINKS -->
-  <section>
+ 
+  <section class="page-enter">
     <span class="label">Elsewhere</span>
     <div class="links">
-
-      <a class="link-row" href="https://linkedin.com/in/amittsaha">
+      <a class="link-row" href="https://linkedin.com/in/amittsaha" target="_blank" rel="noopener">
         <span>LinkedIn</span>
         <span>Professional</span>
       </a>
-
-      <a class="link-row" href="https://substack.com/@amittsaha">
+      <a class="link-row" href="https://substack.com/@amittsaha" target="_blank" rel="noopener">
         <span>Substack</span>
         <span>Writing</span>
       </a>
-
-      <a class="link-row" href="https://amittsaha.medium.com">
+      <a class="link-row" href="https://amittsaha.medium.com" target="_blank" rel="noopener">
         <span>Medium</span>
         <span>Essays</span>
       </a>
-
-      <a class="link-row" href="https://instagram.com/theamitsahaa">
+      <a class="link-row" href="https://instagram.com/theamitsahaa" target="_blank" rel="noopener">
         <span>Instagram</span>
         <span>Visual</span>
       </a>
-
     </div>
   </section>
-
-  <footer>
+ 
+  <footer class="page-enter">
     <span>© 2026 Amit Saha</span>
-    <span>India</span>
+    <span>Kolkata, India</span>
   </footer>
-
+ 
 </main>
-
+ 
 <script>
+  /* ── Theme ── */
   const root = document.documentElement;
-
+ 
   function toggleTheme() {
-    const current = root.getAttribute("data-theme");
-    const next = current === "dark" ? "light" : "dark";
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
     root.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
   }
-
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme) {
-    root.setAttribute("data-theme", savedTheme);
-  }
+ 
+  const saved = localStorage.getItem("theme");
+  if (saved) root.setAttribute("data-theme", saved);
+ 
+  /* ── Custom cursor ── */
+  const cursor     = document.getElementById("cursor");
+  const cursorRing = document.getElementById("cursorRing");
+  let mx = -100, my = -100;
+ 
+  document.addEventListener("mousemove", e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left     = mx + "px";
+    cursor.style.top      = my + "px";
+    cursorRing.style.left = mx + "px";
+    cursorRing.style.top  = my + "px";
+  });
+ 
+  document.querySelectorAll("a, button").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      cursor.style.width  = "4px";
+      cursor.style.height = "4px";
+      cursorRing.style.width   = "48px";
+      cursorRing.style.height  = "48px";
+      cursorRing.style.opacity = "0.6";
+    });
+    el.addEventListener("mouseleave", () => {
+      cursor.style.width  = "8px";
+      cursor.style.height = "8px";
+      cursorRing.style.width   = "32px";
+      cursorRing.style.height  = "32px";
+      cursorRing.style.opacity = "0.35";
+    });
+  });
+ 
+  document.addEventListener("mouseleave", () => {
+    cursor.style.opacity = "0";
+    cursorRing.style.opacity = "0";
+  });
+  document.addEventListener("mouseenter", () => {
+    cursor.style.opacity = "1";
+    cursorRing.style.opacity = "0.35";
+  });
 </script>
-
+ 
 </body>
 </html>
+ 
